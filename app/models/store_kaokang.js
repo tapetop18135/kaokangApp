@@ -3,11 +3,11 @@ var assert = require('assert');
 
 
 var con = mariadb.createConnection({
-  host     : 'localhost',
-  port     : '3300',
-  user     : 'root',
-  password : '1234',
-  database : 'storekaokang'
+  host     : 'h7xe2knj2qb6kxal.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+  port     : '0',
+  user     : 'gfi34cbvvvy31945',
+  password : 'jsqcjv2vwnbx1bnj',
+  database : 'kyqwkmqrzmytpp0d'
 });
 
 var db_kaokang = function(){
@@ -76,7 +76,7 @@ this.showMenu_Raw = (food,callback) => {
 this.insertHistory = (t_price,callback) => {
     var sql = "INSERT INTO storekaokang.history (total_price) values ("+t_price+")";
     con.query(sql, function (error, results, fields) {
-        if (error) throw error;
+        if (error) console.log("err");
         return callback("success");
     });
 
@@ -87,7 +87,7 @@ this.insertRecord = (date,menu,callback) => {
         var sql = 'INSERT INTO storekaokang.record (n_menu,date_history,num) values ("'+k+'","'+date+'",'+menu[k]+')'
         i+= 1
         con.query(sql, function (error, results, fields) {
-            if (error) throw error;
+            if (error) console.log("err");
         });
         if(i === Object.keys(menu).length){
             callback("success")
