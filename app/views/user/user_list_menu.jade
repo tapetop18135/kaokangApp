@@ -1,0 +1,37 @@
+extends user_layout
+
+block contents
+    div 
+    -   var header = "รายการวันที่ "  +head
+        h1= header    
+        table
+            tr
+                th  ชื่ออาหาร
+                th  วัตถุดิบ
+                th  จำนวนที่สั่ง
+                th  จำนวนต่อหน่วย
+                th  ราคาต่อหน่วย
+                th  หน่วย
+            - var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+            - for(var i = 0 ; i < data.length ; i+= 1){
+            - var date = new Date(data[i]["date_history"])
+            - var s = date.getDate()+"-"+months[(date.getMonth())]+"-"+date.getFullYear()
+                    tr
+                        td= data[i]["n_menu"]
+                        td= data[i]["n_raw_material"]
+                        td= data[i]["num"]
+                        td= data[i]["quantity"]
+                        td= data[i]["price_perunit"]
+                        td= data[i]["unit"]
+            - }
+        h3 Total Price 
+            = data[0]["total_price"]+" "
+            บาท
+        br
+        br
+        button(class = "print_page") Print
+        button(class = "cancel") ยกเลิกรายการ
+             
+
+                
+

@@ -1,0 +1,22 @@
+extends user_layout
+
+block contents 
+    div 
+        h1  HISTORY PAGE
+        table
+            tr
+                th Date
+                th Total Price
+                th 
+            - for(var i = 0 ; i < data_history.length ; i+= 1 ){
+            tr 
+                td= date[i]
+                td= data_history[i]["total_price"]
+                - var dir = date[i]
+                    td(class="button" , direct= dir) click
+            - }
+    br
+    br
+    button(class = "cancel") ยกเลิกรายการ
+
+

@@ -1,0 +1,33 @@
+extends user_layout.jade
+
+block contents
+    div
+        h1  สร้างใบรายการ
+    div
+    
+        div 
+            ค้นหา 
+            input(type="text" class="search_text" value="")
+        br
+        div(class="show_menu")
+            table
+                tr
+                    th
+                    th ชื่อเมนู
+                    th ราคา
+                - for(var i = 0 ; i < data.length ; i+= 1 ){
+                tr  
+                    td       
+                        input(type="checkbox" class="check_menu" value=data[i]["n_menu"])              
+                    td= data[i]["n_menu"]
+                    td= data[i]["price"]
+                -}
+    br
+    hr
+    br
+
+    div(class="add_menu")
+    button(class='cancel') ยกเลิกรายการ
+         
+    
+                
