@@ -2,14 +2,20 @@ var mariadb  = require('mysql');
 var assert = require('assert');
 
 
-var con = mariadb.createConnection(process.env.JAWSDB_MARIA_URL);
+var con = mariadb.createConnection(process.env.JAWSDB_MARIA_URL || {
+    host     : 'localhost',
+    port     : '3300',
+    user     : 'root',
+    password : '1234',
+    database : 'storekaokang'
+  });
 
 var db_kaokang = function(){
 ////////////////////// history page  ///////////////////
 
  
     this.showHistory = (callback) => {
-        var sql = "select * from storekaokang.history";
+        var sql = "select * from history";
         con.query(sql, function (error, results, fields) {
             if (error) throw error;
             return(callback(results))
@@ -19,14 +25,14 @@ var db_kaokang = function(){
 this.showListMenu = (date,callback) => {
 
   var sql = "select *"+  
-            "from storekaokang.history as t0 "+
-            "inner join storekaokang.record as t1 "+
+            "from history as t0 "+
+            "inner join record as t1 "+
             "on (t0.date_history = t1.date_history) "+
-            "inner join storekaokang.menu as t2 "+
+            "inner join menu as t2 "+
             "on (t1.n_menu = t2.n_menu) "+
-            "inner join storekaokang.use as t3 "+
+            "inner join `use` as t3 "+
             "on (t2.n_menu = t3.n_menu) "+
-            "inner join storekaokang.raw_material as t4 "+
+            "inner join raw_material as t4 "+
             "on (t3.n_raw_material = t4.n_rawmaterial) "+
             "where t1.date_history = '"+date+"'"
   console.log(sql)
@@ -37,7 +43,7 @@ this.showListMenu = (date,callback) => {
 }
 
 this.showMenu = (text,callback) => {
-    var sql = "select * from storekaokang.menu as t1 where t1.n_menu like '%"+ text +"%'";
+    var sql = "select * from menu as t1 where t1.n_menu like '%"+ text +"%'";
     con.query(sql, function (error, results, fields) {
         if (error) throw error;
         return(callback(results))
@@ -45,7 +51,7 @@ this.showMenu = (text,callback) => {
     });
 }
 this.showMenuAll = (callback) => {
-    var sql = "select * from storekaokang.menu";
+    var sql = "select * from menu";
     con.query(sql, function (error, results, fields) {
         if (error) throw error;
         return callback(results);
@@ -55,10 +61,10 @@ this.showMenuAll = (callback) => {
 this.showMenu_Raw = (food,callback) => {
 
     var sql = "select t1.n_menu,t2.n_raw_material,t2.quantity,t3.price_perunit "+
-        "from storekaokang.menu as t1 "+
-        "inner join storekaokang.use as t2 "+
+        "from menu as t1 "+
+        "inner join `use` as t2 "+
         "on (t1.n_menu = t2.n_menu) "+
-        "inner join storekaokang.raw_material as t3 "+
+        "inner join raw_material as t3 "+
         "on (t2.n_raw_material = t3.n_rawmaterial) "+
         "where t1.n_menu = '"+food+"'"
     con.query(sql, function (error, results, fields) {
@@ -67,10 +73,11 @@ this.showMenu_Raw = (food,callback) => {
     });
 }
 
-this.insertHistory = (t_price,callback) => {
-    var sql = "INSERT INTO storekaokang.history (total_price) values ("+t_price+")";
+this.insertHistory = (date,t_price,callback) => {
+    var sql = "INSERT INTO history values ( '"+date+"' , "+t_price+")";
+    console.log(sql)
     con.query(sql, function (error, results, fields) {
-        if (error) console.log("err");
+        if (error) throw error;
         return callback("success");
     });
 
@@ -78,7 +85,7 @@ this.insertHistory = (t_price,callback) => {
 this.insertRecord = (date,menu,callback) => {
     var i = 0 
     for(var k in menu){
-        var sql = 'INSERT INTO storekaokang.record (n_menu,date_history,num) values ("'+k+'","'+date+'",'+menu[k]+')'
+        var sql = 'INSERT INTO record (n_menu,date_history,num) values ("'+k+'","'+date+'",'+menu[k]+')'
         i+= 1
         con.query(sql, function (error, results, fields) {
             if (error) console.log("err");

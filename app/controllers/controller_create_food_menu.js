@@ -63,7 +63,7 @@ router.post('/insert_history',function(req,res){
     for(var k in d2){
         temp += (d1[k] * d2[k])
     }
-    db.insertHistory(temp,function(result){
+    db.insertHistory(date_real,temp,function(result){
         if(result == "success"){
             db.insertRecord(date_real,d1,function(result){ 
                 if(result === "success"){

@@ -17,7 +17,7 @@ app.set("view engine","jade");
 
 app.use(express.static('./app/public'));
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 
 var routes = require("./app/routes/routes")(app);
 app.listen(PORT,() => {
