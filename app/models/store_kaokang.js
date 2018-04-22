@@ -2,14 +2,7 @@ var mariadb  = require('mysql');
 var assert = require('assert');
 
 
-var con = mariadb.createConnection(
-    {
-    host     : 'h7xe2knj2qb6kxal.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
-    port     : '0',
-    user     : 'd75bjt4c8csdyn0i',
-    password : 'kn0a2swg82dq6gb2',
-    database : 'hifsctclfumdnrkg'
-    });
+var con = mariadb.createConnection(process.env[config.use_env_variable]);
 
 var db_kaokang = function(){
 ////////////////////// history page  ///////////////////
