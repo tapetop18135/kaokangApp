@@ -1,7 +1,14 @@
 var mariadb  = require('mysql');
 
 
-var con = mariadb.createConnection(process.env.JAWSDB_URL);
+var con = mariadb.createConnection(process.env.JAWSDB_URL 
+    || {
+        host     : 'localhost',
+        port     : '3300',
+        user     : 'root',
+        password : '1234',
+        database : 'storekaokang'
+      } );
 
 var db_kaokang = function(){
 ////////////////////// history page  ///////////////////
