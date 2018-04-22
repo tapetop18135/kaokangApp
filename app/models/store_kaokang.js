@@ -1,8 +1,7 @@
 var mariadb  = require('mysql');
-var assert = require('assert');
 
 
-var con = mariadb.createConnection(process.env[config.use_env_variable]);
+var con = mariadb.createConnection(process.env.JAWSDB_URL);
 
 var db_kaokang = function(){
 ////////////////////// history page  ///////////////////
