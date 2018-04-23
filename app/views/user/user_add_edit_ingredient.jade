@@ -1,0 +1,27 @@
+extends user_layout.jade
+
+block contents
+    div
+        h1 List Ingredient Kaokang
+    div
+        table  
+            tr
+                th no.
+                th ชื่อวัตถุดิบ
+                th ราคาต่อหน่วย
+                th หน่วย
+                th
+            - for(var i = 0 ; i < data.length ; i+= 1){
+                tr
+                    td= i+1 +". "
+                    td= data[i]["n_rawmaterial"]
+                    td= data[i]["price_perunit"]
+                    td= data[i]["unit"]
+                    td(class="edit" dir="e_"+data[i]["n_rawmaterial"]) edit
+            -}
+    div
+        br
+        br
+        button(class="add_raw") เพิ่มรายวัตถุดิบ
+        button(class="cancel") ยกเลิกรายการ
+    

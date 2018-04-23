@@ -53,7 +53,15 @@ this.showMenu = (text,callback) => {
 this.showMenuAll = (callback) => {
     var sql = "select * from menu";
     con.query(sql, function (error, results, fields) {
-        if (error) throw error;
+        if (error) console.log(error);
+        return callback(results);
+    });
+}
+
+this.showRaw_materialAll = (callback) => {
+    var sql = "select * from raw_material";
+    con.query(sql, function (error, results, fields) {
+        if (error) console.log(error);
         return callback(results);
     });
 }
@@ -134,14 +142,3 @@ this.insertRecord = (date,menu,callback) => {
 }
 
 module.exports = new db_kaokang();
-// db = new db_kaokang();
-
-// db.showHistory(function(r,b){
-//   console.log(b)
-//   console.log(r)
-// });
-
-
-// db.showRaw_material();
-// db.showRecord();
-// db.showUse();
