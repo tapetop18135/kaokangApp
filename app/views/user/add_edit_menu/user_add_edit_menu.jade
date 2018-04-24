@@ -16,7 +16,7 @@ block contents
                         td= i+1 +". "
                         td= data[i]["n_menu"]
                         td= data[i]["price"]
-                        td(class="edit" dir="e_"+data[i]["n_menu"]) edit
+                        td(class="edit" dir=data[i]["n_menu"]) edit
             - }
     div
         br

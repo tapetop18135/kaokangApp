@@ -105,6 +105,17 @@ this.insertRecord = (date,menu,callback) => {
 
 }
 
+this.insertIngredient = (n_raw_material,price_perunit,unit,callback) => {
+    sql = 'INSERT INTO storekaokang.raw_material (n_rawmaterial,price_perunit,unit) '+
+           'VALUES ("'+n_raw_material+'",'+price_perunit+',"'+unit+'"); '
+        con.query(sql, function (error, results, fields) {
+            if (error) callback(error);
+            else{
+                callback("success")
+            }
+        });
+}
+
 ///////////////////////////////////////////////////////
 
     // this.showMenu = () => {

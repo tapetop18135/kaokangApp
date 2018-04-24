@@ -17,7 +17,7 @@ block contents
                     td= data[i]["n_rawmaterial"]
                     td= data[i]["price_perunit"]
                     td= data[i]["unit"]
-                    td(class="edit" dir="e_"+data[i]["n_rawmaterial"]) edit
+                    td(class="edit" dir=data[i]["n_rawmaterial"]) edit
             -}
     div
         br

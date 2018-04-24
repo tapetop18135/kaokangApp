@@ -1,27 +1,41 @@
 extends ../user_layout.jade
 
 block contents
-    div
-        - if(type_of_page === "add"){ 
-            h1 Add Ingrediebt
-        - }else{
-            h1 Edit Ingrediebt
-        -}
+    - if(type_of_page === "add"){ 
+        div
+            h1 Add Ingredient
 
-    div
-        h2  ชื่อวัตถุดิบ 
-            - if(type_of_page === "add"){ 
-                input(type="text" , placeholder="ใส่ชื่อวัตถุดิบ")
-            - }else{
-                input(type="text" , value=data["n_raw_material"])
-            -}
+        div
 
-    div
-        
+            h3  ชื่อวัตถุดิบ  
+                input(class="name_in" type="text" , placeholder="ใส่ชื่อวัตถุดิบ")
+            h3  ราคาต่อหน่วย
+            input(class="price" type="text" , placeholder="ใส่ราคาต่อหน่วย")
+            h3  หน่วย
+            input(class="unit" type="text" , placeholder="ใส่หน่วย")
+            
+        div
+            br
+            br
+            button(class="add_ingredient") เพิ่มรายการวัตถุดิบ
+            button(class="cancel") ยกเลิกรายการ
 
-        
-    div
-        br
-        br
-        button(class="add_menu") เพิ่มรายการวัตถุดิบ
-        button(class="cancel") ยกเลิกรายการ
+    -}else{
+
+        div
+            h1 Edit Ingredient
+
+        div
+            h2  ชื่อวัตถุดิบ 
+                input(type="text" , value='data["n_raw_material"]')
+
+        div
+            
+
+            
+        div
+            br
+            br
+            button(class="edit_ingredient") แก้ไขรายการวัตถุดิบ
+            button(class="cancel") ยกเลิกรายการ
+    -}
