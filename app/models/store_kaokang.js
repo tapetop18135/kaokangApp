@@ -66,12 +66,14 @@ this.showRaw_materialAll = (callback) => {
     });
 }
 this.showRaw_material_name = (name,callback) => {
-    var sql = "select * from raw_material where n_rawmaterial = '"+ name +"'";
+    var sql = "select * from raw_material where n_rawmaterial like '%"+ name +"%'";
+    console.log(sql)
     con.query(sql, function (error, results, fields) {
         if (error) callback([error,true]);
         return callback([results,false]);
     });
 }
+
 
 this.showMenu_Raw = (food,callback) => {
 
@@ -87,6 +89,7 @@ this.showMenu_Raw = (food,callback) => {
         return callback(results);
     });
 }
+
 
 this.insertHistory = (date,t_price,callback) => {
     var sql = "INSERT INTO history values ( '"+date+"' , "+t_price+")";
@@ -106,7 +109,7 @@ this.insertRecord = (date,menu,callback) => {
             if (error) console.log("err");
         });
         if(i === Object.keys(menu).length){
-            callback("success")
+            return callback("success")
         }
     }
 
@@ -118,7 +121,7 @@ this.insertIngredient = (n_raw_material,price_perunit,unit,callback) => {
         con.query(sql, function (error, results, fields) {
             if (error) callback(error);
             else{
-                callback("success")
+                return callback("success")
             }
         });
 }
@@ -130,10 +133,10 @@ this.updateRaw_material = (name_real,name_vir,price,unit,callback) => {
         'WHERE t1.n_rawmaterial = "'+name_real+'"'
         con.query(sql, function (error, results, fields) {
             if (error) {
-                callback([error,true])}
+                return callback([error,true])}
             else{
                 console.log("in model : "+results)
-                callback(["success",false])
+                return callback(["success",false])
             }
         });
 }
@@ -144,13 +147,9 @@ this.deleteRaw_material_name = (name,callback) => {
     var sql = "DELETE FROM raw_material WHERE raw_material.n_rawmaterial = '"+name+"'"
     con.query(sql, function (error, results, fields) {
         if (error) {
-            callback([error,true])}
+            return callback([error,true])}
         else{
-            for(var k in results){
-                console.log(k + " : " +results[k])
-            }
-            // console.log("in model : "+results)
-            callback(["success",false])
+            return callback(["success",false])
         }
     });
 }

@@ -9,11 +9,34 @@ router.get("/",function(req,res){
     });
 })
 
+router.post("/search",function(req,res){
+    var data = req.body
+    if(data["data"] === "true"){
+        db.showRaw_materialAll(function(result){
+            res.send(result)
+            // console.log(result)
+        })
+    }else{
+        db.showRaw_material_name(data["data"],function(result){
+            console.log(result[1])
+            if(result[1] === true){
+                res.send(result[0])
+                // console.log(result[0])
+            }else{
+                res.send(result[0])
+                // console.log(result[0])
+            }
+        })
+    }
+})
+
+
 router.get("/add_a_ingredient",function(req,res){
 
     res.render("./user/add_edit_ingredient/user_add_edit_a_ingredinet.jade",{style: "add_edit_ingredient/add_a_ingredient",js:"add_edit_ingredient/add_a_ingredient",title : "ADD a Ingredient",type_of_page:"add"});
 
 })
+
 
 router.post("/add_a_ingredient",function(req,res){
     var data = req.body;

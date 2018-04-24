@@ -3,7 +3,12 @@ extends ../user_layout.jade
 block contents
     div
         h1 List Ingredient Kaokang
+    
     div
+        ค้นหา 
+        input(class="search_in" type="text" placeholder="ค้นหาวัตถุดิบ" val="")
+    br
+    div(class="show_ingredient")
         table  
             tr
                 th no.
