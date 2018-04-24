@@ -1,0 +1,27 @@
+extends ../user_layout.jade
+
+block contents
+    div
+        - if(type_of_page === "add"){ 
+            h1 Add Ingrediebt
+        - }else{
+            h1 Edit Ingrediebt
+        -}
+
+    div
+        h2  ชื่อวัตถุดิบ 
+            - if(type_of_page === "add"){ 
+                input(type="text" , placeholder="ใส่ชื่อวัตถุดิบ")
+            - }else{
+                input(type="text" , value=data["n_raw_material"])
+            -}
+
+    div
+        
+
+        
+    div
+        br
+        br
+        button(class="add_menu") เพิ่มรายการวัตถุดิบ
+        button(class="cancel") ยกเลิกรายการ

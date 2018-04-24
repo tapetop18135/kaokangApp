@@ -3,7 +3,7 @@ $(document).ready(function(){
         alert("edit")
     })
     $(".add_menu").on("click",function(){
-        alert("add")
+        window.location.href = "./add_edit_menu/add_edit_a_menu"
     })
     $(".cancel").on("click",function(){
         window.location.href = "/"

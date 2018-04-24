@@ -1,0 +1,27 @@
+extends ../user_layout.jade
+
+block contents
+    div
+        - if(type_of_page === "add"){ 
+            h1 Add Menu
+        - }else{
+            h1 Edit Menu
+        -}
+
+    div
+        h2  ชื่อเมนู 
+            - if(type_of_page === "add"){ 
+                input(type="text" , placeholder="ใส่ชื่อเมนู")
+            - }else{
+                input(type="text" , value=data["n_menu"])
+            -}
+
+    div
+        
+
+        
+    div
+        br
+        br
+        button(class="add_menu") เพิ่มรายการอาหาร
+        button(class="cancel") ยกเลิกรายการ
