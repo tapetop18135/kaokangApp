@@ -116,7 +116,7 @@ this.insertRecord = (date,menu,callback) => {
 }
 
 this.insertIngredient = (n_raw_material,price_perunit,unit,callback) => {
-    var sql = 'INSERT INTO storekaokang.raw_material (n_rawmaterial,price_perunit,unit) '+
+    var sql = 'INSERT INTO raw_material (n_rawmaterial,price_perunit,unit) '+
            'VALUES ("'+n_raw_material+'",'+price_perunit+',"'+unit+'"); '
         con.query(sql, function (error, results, fields) {
             if (error) callback(error);
