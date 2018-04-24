@@ -65,6 +65,13 @@ this.showRaw_materialAll = (callback) => {
         return callback(results);
     });
 }
+this.showRaw_material_name = (name,callback) => {
+    var sql = "select * from raw_material where n_rawmaterial = '"+ name +"'";
+    con.query(sql, function (error, results, fields) {
+        if (error) callback([error,true]);
+        return callback([results,false]);
+    });
+}
 
 this.showMenu_Raw = (food,callback) => {
 
@@ -106,7 +113,7 @@ this.insertRecord = (date,menu,callback) => {
 }
 
 this.insertIngredient = (n_raw_material,price_perunit,unit,callback) => {
-    sql = 'INSERT INTO storekaokang.raw_material (n_rawmaterial,price_perunit,unit) '+
+    var sql = 'INSERT INTO storekaokang.raw_material (n_rawmaterial,price_perunit,unit) '+
            'VALUES ("'+n_raw_material+'",'+price_perunit+',"'+unit+'"); '
         con.query(sql, function (error, results, fields) {
             if (error) callback(error);
@@ -116,6 +123,37 @@ this.insertIngredient = (n_raw_material,price_perunit,unit,callback) => {
         });
 }
 
+
+this.updateRaw_material = (name_real,name_vir,price,unit,callback) => {
+    var sql = 'UPDATE raw_material as t1 '+
+        'SET t1.n_rawmaterial = "'+name_vir+'" , t1.price_perunit = '+price+' , t1.unit = "'+unit+'" '+
+        'WHERE t1.n_rawmaterial = "'+name_real+'"'
+        con.query(sql, function (error, results, fields) {
+            if (error) {
+                callback([error,true])}
+            else{
+                console.log("in model : "+results)
+                callback(["success",false])
+            }
+        });
+}
+
+
+
+this.deleteRaw_material_name = (name,callback) => {
+    var sql = "DELETE FROM raw_material WHERE raw_material.n_rawmaterial = '"+name+"'"
+    con.query(sql, function (error, results, fields) {
+        if (error) {
+            callback([error,true])}
+        else{
+            for(var k in results){
+                console.log(k + " : " +results[k])
+            }
+            // console.log("in model : "+results)
+            callback(["success",false])
+        }
+    });
+}
 ///////////////////////////////////////////////////////
 
     // this.showMenu = () => {

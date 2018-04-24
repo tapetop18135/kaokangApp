@@ -23,7 +23,34 @@ router.post("/add_a_ingredient",function(req,res){
 })
 
 router.get("/edit_a_ingredient/:ingredient",function(req,res){
-    res.render("./user/add_edit_ingredient/user_add_edit_a_ingredinet.jade",{style: "add_edit_ingredient/edit_a_ingredient",js:"add_edit_ingredient/edit_a_ingredient",title : "Edit a Ingredient",type_of_page:"edit"}); 
+    var name = req.params.ingredient;
+    db.showRaw_material_name(name,function(result){
+        if(result[1] === true){
+            res.send(result[0])
+        }else{
+            console.log(result[0])
+            res.render("./user/add_edit_ingredient/user_add_edit_a_ingredinet.jade",{style: "add_edit_ingredient/edit_a_ingredient",js:"add_edit_ingredient/edit_a_ingredient",title : "Edit a Ingredient",type_of_page:"edit",data:result[0]}); 
+        }
+    })
+    
+})
+
+router.post("/edit_a_ingredient/update_ingredient",function(req,res){
+    var data = req.body
+    console.log(data)
+    db.updateRaw_material( data["name_real"],data["name_vir"],Number(data["price"]),data["unit"],function(result){
+        if(result[1] === true){res.send(result[0])}
+        else{
+            res.send(result[0])
+        }
+    })
+});
+
+router.post("/edit_a_ingredient/delete_ingredient",function(req,res){
+    var data = req.body
+    db.deleteRaw_material_name(data["name_real"],function(result){
+        res.send(result[0])
+    })
 })
 
 module.exports = router;

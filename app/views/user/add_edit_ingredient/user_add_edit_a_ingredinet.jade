@@ -23,19 +23,22 @@ block contents
     -}else{
 
         div
-            h1 Edit Ingredient
+            h1 Edit Ingredient of 
+               span(class="name_ingredient")= data[0]["n_rawmaterial"]
 
         div
-            h2  ชื่อวัตถุดิบ 
-                input(type="text" , value='data["n_raw_material"]')
-
+            h2  ชื่อวัตถุดิบ : 
+                input(class="name_in_vir" type="text" , value = data[0]["n_rawmaterial"])
+            h2  ราคาต่อหน่วย 
+                input(class="price" type="text" , value = data[0]["price_perunit"])
+            h2  หน่วย 
+                input(class="unit" type="text" , value = data[0]["unit"])
         div
-            
-
             
         div
             br
             br
             button(class="edit_ingredient") แก้ไขรายการวัตถุดิบ
+            button(class="delete") ลบรายการวัตถุดิบ
             button(class="cancel") ยกเลิกรายการ
     -}
