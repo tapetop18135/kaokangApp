@@ -1,27 +1,58 @@
 extends ../user_layout.jade
 
 block contents
-    div
-        - if(type_of_page === "add"){ 
+    - if(type_of_page === "add"){ 
+        div
             h1 Add Menu
-        - }else{
-            h1 Edit Menu
-        -}
 
-    div
-        h2  ชื่อเมนู 
-            - if(type_of_page === "add"){ 
-                input(type="text" , placeholder="ใส่ชื่อเมนู")
-            - }else{
-                input(type="text" , value='data["n_menu"]')
-            -}
+        div
 
-    div
+            h3  ชื่อเมนู 
+                input(class="n_menu" type="text" , placeholder="ใส่ชื่อเมนู")
+            h3  ราคา 
+                br
+                br
+                input(class="price" type="text" , placeholder="ใส่ราคา")
         
-
+        div
+            br
+            br
+            button(class="next_menu") ทำรายการค่อไป
+            button(class="cancel") ยกเลิกรายการ
+    -}else{
+        h1 Edit Menu
+        div
+            h2(class="menu_name_real")= "ชื่อเมนู "+data[0]["n_menu"]
+            //- h1(class="menu_name_vir")= "ชื่อเมนู "+data["n_menu"]
+            h3 ขื่อเมนู  
+                input(type="text" class="menu_name_vir" placeholder="ใส่ขื่อเมนู" value=data[0]["n_menu"])
+            h3 ราคา 
+                input(type="text" class="menu_price" placeholder="ใส่ราคา" value=data[0]["price_perunit"])
         
-    div
-        br
-        br
-        button(class="add_menu") เพิ่มรายการอาหาร
-        button(class="cancel") ยกเลิกรายการ
+        h3 วัตถุดิบ
+        div(class="gerate_ingre") 
+            table
+                tr
+                    th no.
+                    th ชื่อวัตถุดิบ
+                    th ราคาต่อหน่วย
+                    th หน่วย
+                    th ปริมาณต่อหน่วย
+                    th รวม
+                -for(var i = 0 ; i < data.length ; i += 1){
+                        tr
+                            td= (i+1)+". "
+                            td= data[i]["n_rawmaterial"]
+                            td(class="text_p"+data[i]["n_rawmaterial"])= data[i]["price_perunit"]
+                            td= data[i]["unit"]
+                            td
+                                input(size="4" type="text" class="text_q" dir=data[i]["n_rawmaterial"] value=data[i]["quantity"] maxlength="7")
+                            td(class="text_p_u"+data[i]["n_rawmaterial"])= ( data[i]["price_perunit"] * data[i]["quantity"] )
+                -}          
+        div
+            br
+            br
+            button(class="edit_menu") แก้ไขรายการอาหาร
+            button(class="cancel") ยกเลิกรายการ
+
+    -}

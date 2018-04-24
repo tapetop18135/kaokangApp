@@ -90,6 +90,18 @@ this.showMenu_Raw = (food,callback) => {
     });
 }
 
+this.showRaw_menu_name = (name,callback) => {
+    var sql = "select * from raw_material as t1 "+
+                "inner join `use` as t2 "+
+                "on (t1.n_rawmaterial = t2.n_raw_material) "+
+                "where t2.n_menu = '"+name+"'"
+    console.log(sql)
+    con.query(sql, function (error, results, fields) {
+        if (error) callback([error,true]);
+        return callback([results,false]);
+    });
+}
+
 
 this.insertHistory = (date,t_price,callback) => {
     var sql = "INSERT INTO history values ( '"+date+"' , "+t_price+")";
@@ -100,6 +112,7 @@ this.insertHistory = (date,t_price,callback) => {
     });
 
 }
+
 this.insertRecord = (date,menu,callback) => {
     var i = 0 
     for(var k in menu){
@@ -126,6 +139,28 @@ this.insertIngredient = (n_raw_material,price_perunit,unit,callback) => {
         });
 }
 
+this.insertMenu = (name,price,callback) => {
+    var sql = 'insert into menu values ("'+name+'",'+price+')'
+    console.log(sql)
+    con.query(sql, function (error, results, fields) {
+        if (error) callback([error,true])
+        else{
+            return callback(["success",false])
+        }
+    });
+}
+
+this.insertMenu_use = (name,price,num,callback) => {
+    var sql = 'insert into `use` values ("'+name+'","'+price+'","'+num+'")'
+    
+    con.query(sql, function (error, results, fields) {
+        if (error) callback([error,true])
+        else{
+            return callback(["success",false])
+        }
+    });
+    
+}
 
 this.updateRaw_material = (name_real,name_vir,price,unit,callback) => {
     var sql = 'UPDATE raw_material as t1 '+

@@ -1,0 +1,38 @@
+extends ../user_layout.jade
+
+block contents
+    div
+        h1 Add Menu
+        h2 ชื่อเมนู 
+            span(class="name_menu")= name 
+        h2 ราคา 
+            span(class="price_menu")= price 
+    div
+        h3 เลือกวัตถุดิบในการทำ
+        table
+            tr
+                th
+                th ชื่อวัตถุดิบ
+                th ราคาต่อหน่วย
+                th หน่วย
+            - for(var i = 0 ; i < data.length ; i+= 1){
+                    tr
+                        td 
+                            input(class="check" type="checkbox" dir=data[i]["n_rawmaterial"])
+                        td= data[i]["n_rawmaterial"]
+                        td= data[i]["price_perunit"]
+                        td= data[i]["unit"]
+            -}
+    hr
+    div(class="add_ingredient")
+
+    br
+    br
+    div(class="button_bot")
+        button(class="cancel") ยกเลิกรายการ
+
+
+
+
+                
+                    
