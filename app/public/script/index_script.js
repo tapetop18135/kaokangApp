@@ -15,4 +15,8 @@ $(document).ready(function(){
         e.preventDefault()
         window.location.href = "./add_edit_ingredient";
     })
+    $(".about").on("click",function(e){
+        e.preventDefault();
+        window.location.href = "./about";
+    })
 })

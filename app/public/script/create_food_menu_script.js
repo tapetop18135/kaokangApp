@@ -110,7 +110,7 @@ function generate_addMenu(arr){
     for(var key in arr){
         state = 1
         string += "<tr>"
-        string += "<td>"+key+"</td><td><button class='add' dir='"+key+"'>Add</button></td><td><div class='count_"+key+"'>"+arr[key]+"</div></td><td><button class='unadd' dir='"+key+"'>Un add</button></td>"
+        string += "<td>"+key+"</td><td><button class='add' dir='"+key+"'>+</button></td><td><div class='count_"+key+"'>"+arr[key]+"</div></td><td><button class='unadd' dir='"+key+"'>-</button></td>"
         string += "</tr>"
     }
     if(state == 1){

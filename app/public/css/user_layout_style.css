@@ -1,14 +1,22 @@
 body {
+    padding-left: 0;
+    margin: 0;
     /*
     background-image : url("");
     */
     background-color: lightblue;
 }
 
-
+.banner{
+    margin: 0;
+    padding:10px 0;
+    font-size: 40px;    
+    background: pink;
+}
 h1 {
-    color: PINK;
+    color: black;
     text-align: left;
+    font-size: 25px;
 }
 
 
@@ -21,7 +29,9 @@ h3 {
     color: BLACK;
     text-align: left;
 }
-
+a{
+    text-decoration: none;
+}
 /* unvisited link */
 a:link {
     color: green;
@@ -37,16 +47,20 @@ a:hover {
     color: hotpink;
 }
 
+.contents{
+    padding-left: 10px;
+}
+
 /* selected link */
 a:active {
     color: red;
 }
-
 /* TABLE */
 td, #customers th {
     border: 1px solid #ddd;
     padding: 8px;
 }
+
 
  tr:nth-child(even){background-color: #f2f2f2;}
 
@@ -60,7 +74,30 @@ td, #customers th {
     color: white;
 }
 /* END TABLE */
+.about .students div{
+    text-align: center;
+    float: left;
+    width: 20%;
+}
+.about .students div p{
+    font-size: 22px;
+}
+.about .students div h3{
+    text-align: center;
+}
+.about .students img{
+    width: 90%;
+}
 
+ul.index li{
+    font-size: 20px;
+    /* display: inline-block; */
+    padding: 30px;
+    padding-left: 5px; 
+    /* height: 100px; */
+    /* margin-right: 10px; */
+    /* border : 1px black solid;; */
+}
 
 /* BUTTON */
  button {

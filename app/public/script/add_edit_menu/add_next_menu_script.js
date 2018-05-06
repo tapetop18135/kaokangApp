@@ -29,9 +29,9 @@ function generate_add_ingredient(list){
     string = "<table>"
     for(var key in list){
         string +="<tr><td>"+key+"</td>"+
-        "<td><input type='button' class='but_add' dir='"+key+"' value='Add'></td>"+
+        "<td><button class='but_add' dir='"+key+"'>+</button></td>"+
         "<td class='text_"+key+"'>"+list[key]+"</td>"+
-        "<td><input type='button' class='but_unadd' dir='"+key+"' value='Un add'></td></tr>" 
+        "<td><button class='but_unadd' dir='"+key+"'>-</button></td></tr>" 
     }
     string += "</table>"
     var but_bot = "<input type='button' class='add_menu' value='เพิ่มรายการอาหาร'>"+
@@ -52,6 +52,9 @@ function count_ingredient(list){
         var direct = $(this).attr("dir");   
         var temp = Number($(".text_"+direct).text())
         temp -= 1
+        if(temp <= 0){
+            return 
+        }
         list[direct] = temp
         $(".text_"+direct).text(list[direct])
     })
