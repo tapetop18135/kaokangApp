@@ -1,13 +1,14 @@
 body {
     padding-left: 0;
     margin: 0;
-    /*
-    background-image : url("");
-    */
     background-color: lightblue;
 }
-
+.btn_login_logout{
+    display: inline;
+    float:right;
+}
 .banner{
+    height: 55px;
     margin: 0;
     padding:10px 0;
     font-size: 40px;    
@@ -114,6 +115,25 @@ ul.index li{
     transition-duration: 0.4s;
     cursor: pointer;
 }
+input[type=submit] {
+    background-color: white; /* Green */
+    border: 2px solid black;
+    color: black;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+input[type=submit]:hover{
+    background-color: black; /* Green */
+    border: 2px solid white;
+    color: white;
+}
 
 .success {
     background-color: white; 
@@ -137,7 +157,7 @@ ul.index li{
     color: white;
 }
 
-input[type=text] {
+input[type=text]  , input[type=password] , input[type=email]{
     width: 50%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -147,10 +167,17 @@ input[type=text] {
     outline: none;
 }
 
-input[type=text]:focus {
+input[type=text]:focus , input[type=password]:focus , input[type=email]:focus{
     border: 3px solid #555;
 }
 
-input[type=checkbox] {
-    /* How to do? */
+.delete_menu{
+    border: 2px black solid;
+    background: orangered;
+    color: black;
+}
+.delete_menu:hover {
+    border: 2px orangered solid;
+    background: black;
+    color: orangered;
 }

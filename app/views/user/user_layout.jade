@@ -9,10 +9,41 @@ body
     div
         div(class="banner")
             a(href="/" class="banner")  KaowKang Helper
+            -if(longinBool === "none"){
+                button(id="register" class="btn_login_logout") Register
+            -}else if(longinBool === "asdsa"){
+            -}else if(longinBool){
+                button(id="btn_logout" class="btn_login_logout") Log Out
+            -}else{
+                button(id="btn_login" class="btn_login_logout") Log In
+            -}
     div(class="contents")
         block contents
 
         script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
         - var script =  "/script/"+js+"_script.js"
         script(src = script)
+        script.
+            $(document).ready(function(){
+                $("#btn_login").on("click",function(){
+                    window.location.href = "/users/login"
+                })
+                $("#btn_logout").on("click",function(){
+                    $.ajax({
+                        type:"POST",
+                        url:"/users/logout",
+                        data:{"bool":"logout"},
+                        success : function(data){
+                            console.log(data);
+                            if(data === "success"){
+                                window.location.href = "/"
+                            }
+                        }
+                    })      
+                })
+                $("#register").on("click",function(){
+                    window.location.href = "/users/register"
+                })
+            });
+
     

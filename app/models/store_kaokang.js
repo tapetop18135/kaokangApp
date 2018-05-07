@@ -12,7 +12,9 @@ var con = mariadb.createConnection(process.env.JAWSDB_URL
 
 var db_kaokang = function(){
 ////////////////////// history page  ///////////////////
-
+    this.connectDB = function(){
+        return con;
+    }
  
     this.showHistory = (callback) => {
         var sql = "select * from history";
@@ -21,7 +23,16 @@ var db_kaokang = function(){
             return(callback(results))
           });
     }
- 
+this.writeQuery = function(sql,callback){
+    con.query(sql,function(err,results){
+        if(err){
+            return callback(true,err)
+        }else{
+            return callback(false,results)
+        }
+    })
+}
+
 this.showListMenu = (date,callback) => {
 
   var sql = "select *"+  
@@ -107,10 +118,42 @@ this.insertHistory = (date,t_price,callback) => {
     var sql = "INSERT INTO history values ( '"+date+"' , "+t_price+")";
     console.log(sql)
     con.query(sql, function (error, results, fields) {
-        if (error) throw error;
+        if (error) return callback("err");
         return callback("success");
     });
 
+}
+this.deleteUse = function(data,callback){
+    var sql = "DELETE FROM `use` WHERE n_menu = ?"
+    con.query(sql,[data],function(err,results){
+        if(err){
+            return callback(true,results)
+        }else{  
+            return callback(false,results)
+        }
+    });
+}
+
+this.deleteRecord = function(data,callback){
+    var sql = "DELETE FROM record WHERE n_menu = ?"
+    con.query(sql,[data],function(err,results){
+        if(err){
+            return callback(true,results)
+        }else{  
+            return callback(false,results)
+        }
+    });
+}
+
+this.deleteMenu =function(data,callback){
+    var sql = "DELETE FROM menu WHERE n_menu = ?"
+    con.query(sql,[data],function(err,results){
+        if(err){
+            return callback(true,results)
+        }else{  
+            return callback(false,results)
+        }
+    });
 }
 
 this.insertRecord = (date,menu,callback) => {

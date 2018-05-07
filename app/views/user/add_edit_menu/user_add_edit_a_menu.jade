@@ -22,16 +22,16 @@ block contents
     -}else{
         h1 Edit Menu
         div
-            h2(class="menu_name_real")= "ชื่อเมนู "+data[0]["n_menu"]
+            h2(class="menu_name_real")=  data[0]["n_menu"]
             //- h1(class="menu_name_vir")= "ชื่อเมนู "+data["n_menu"]
             h3 ขื่อเมนู  
-                input(type="text" class="menu_name_vir" placeholder="ใส่ขื่อเมนู" value=data[0]["n_menu"])
+                input(type="text" class="menu_name_vir" placeholder="ใส่ขื่อเมนู" value=data[0]["n_menu"] disabled)
             h3 ราคา 
-                input(type="text" class="menu_price" placeholder="ใส่ราคา" value=data[0]["price_perunit"])
+                input(type="text" class="menu_price" placeholder="ใส่ราคา" value=data[0]["price_perunit"] disabled)
         
         h3 วัตถุดิบ
         div(class="gerate_ingre") 
-            table
+            table(id="edit-table")
                 tr
                     th no.
                     th ชื่อวัตถุดิบ
@@ -42,17 +42,18 @@ block contents
                 -for(var i = 0 ; i < data.length ; i += 1){
                         tr
                             td= (i+1)+". "
-                            td= data[i]["n_rawmaterial"]
+                            td(class="dir_td")= data[i]["n_rawmaterial"]+" "
                             td(class="text_p"+data[i]["n_rawmaterial"])= data[i]["price_perunit"]
                             td= data[i]["unit"]
                             td
-                                input(size="4" type="text" class="text_q" dir=data[i]["n_rawmaterial"] value=data[i]["quantity"] maxlength="7")
+                                input(size="4" type="text" class="text_q"+data[i]["n_rawmaterial"] dir=data[i]["n_rawmaterial"] value=data[i]["quantity"] maxlength="7")
                             td(class="text_p_u"+data[i]["n_rawmaterial"])= ( data[i]["price_perunit"] * data[i]["quantity"] )
                 -}          
         div
             br
             br
             button(class="edit_menu") แก้ไขรายการอาหาร
+            button(class="delete_menu") ลบรายการอาหาร
             button(class="cancel") ยกเลิกรายการ
 
     -}

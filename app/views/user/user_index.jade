@@ -7,6 +7,8 @@ block contents
         ul(class="index")
             li(class = "history") HISTORY
             li(class = "create_food") CREATE FOOD MENU
-            li(class = "add_edit_menu") ADD MENU / EDIT MENU
-            li(class = "add_edit_ingredient") ADD INGREDIENT / EDIT INGREDIENT
+            -if(longinBool){
+                li(class = "add_edit_menu") ADD MENU / EDIT MENU
+                li(class = "add_edit_ingredient") ADD INGREDIENT / EDIT INGREDIENT
+            -}
             li(class = "about") ABOUT

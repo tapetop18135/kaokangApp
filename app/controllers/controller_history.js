@@ -5,6 +5,11 @@ var db = require("../models/store_kaokang.js");
 
 
 router.get("/",function(req,res){
+    if(!req.session.email){
+        loginboolean = false
+    }else{
+        loginboolean = true
+    }
     db.showHistory(function(results){
         var date_use = []
         var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
@@ -19,7 +24,7 @@ router.get("/",function(req,res){
             }
         }
         res.render("./user/user_history.jade",{style: "history",js:"history",title : "HISTORY",
-        data_history : results,date:date_use});
+        data_history : results,date:date_use , longinBool :loginboolean});
     })
   
 })
@@ -28,7 +33,12 @@ router.get("/",function(req,res){
 router.get("/list_menu/:date/:month/:year",function(req,res){
     var date = req.params.date, month = req.params.month , year = req.params.year
     var date_show = date+" "+month+" "+year
-    
+
+    if(!req.session.email){
+        loginboolean = false
+    }else{
+        loginboolean = true
+    }
     var month_num = {January:"01",February:"02",March:"03",April:"04",May:"05",June:"06",July:"07",August:"08",September:"09",October:"10",November:"11",December:"12"}
     var month_num_real = 0
     for(var key in month_num){
@@ -39,7 +49,7 @@ router.get("/list_menu/:date/:month/:year",function(req,res){
 
     var date_serach = year+"-"+month_num_real+"-"+date ;
     db.showListMenu(date_serach,function(results){
-        res.render("./user/user_list_menu.jade",{style: "list_menu",js:"list_menu",title : "MENU : "+date_show,head:date_show,data:results})
+        res.render("./user/user_list_menu.jade",{style: "list_menu",js:"list_menu",title : "MENU : "+date_show,head:date_show,data:results , longinBool :loginboolean})
     })
 
 

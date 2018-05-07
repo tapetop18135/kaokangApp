@@ -34,8 +34,8 @@ function generate_add_ingredient(list){
         "<td><button class='but_unadd' dir='"+key+"'>-</button></td></tr>" 
     }
     string += "</table>"
-    var but_bot = "<input type='button' class='add_menu' value='เพิ่มรายการอาหาร'>"+
-                    "<input type='button' class='cancel' value='ยกเลิกรายการ'>"
+    var but_bot = "<button class='add_menu'>เพิ่มรายการอาหาร</button>"+
+                    "<button class='cancel'>ยกเลิกรายการ</button>"
     $(".add_ingredient").html(string)
     $(".button_bot").html(but_bot)
 }

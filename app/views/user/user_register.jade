@@ -1,0 +1,24 @@
+extends user_layout
+
+block contents
+    h1= title
+    form(name="register" , method="POST")
+        div
+            label(for="username") Username 
+            input(type="text" name="username" placeholder="username")
+        div
+            label(for="email") Email 
+            input(type="email" name="email" placeholder="email")
+        div
+            label(for="password") Password 
+            input(type="password" name="password" placeholder="password")
+        div
+            label(for="name") First name 
+            input(type="text" name="name" placeholder="name")
+        div
+            label(for="surname") Last name 
+            input(type="text" name="surname" placeholder="surname")
+        div
+            input(type="submit" value="submit")
+            
+            

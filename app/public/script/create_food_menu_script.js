@@ -180,6 +180,8 @@ function insert_history(data){
             if(result === true){
                 // console.log(d)
                 window.location.href = d
+            }else if(result === "err"){
+                alert("สร้างได้แค่ 1 วันนะแจะรอพรุ่งนี้ค่อยสร้างใหม่");
             }
         }
     })
