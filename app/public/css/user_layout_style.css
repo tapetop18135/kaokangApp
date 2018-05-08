@@ -3,6 +3,46 @@ body {
     margin: 0;
     background-color: lightblue;
 }
+
+.hompage{
+    text-align: center;
+    font-size: 40px;
+}
+
+.index{
+    margin: auto;
+    width: 80%;
+}
+.index div{
+    font-weight: bold;
+    text-align: center;
+    border: 3px solid black;
+    display: inline-block;
+    background: white;
+    font-size: 20px;
+    /* padding: 50px; */
+    width: 14.5%;
+    padding: 5% 2%;
+    height: 10%;
+    margin-top: 0.8%;
+    margin-left: 0.8%;
+    cursor: pointer;
+    /* transition: color 2s; */
+    transition: all 0.3s;
+    /* transition: color 2s; */
+}
+.index div:hover{
+    border: 3px solid white;
+    background: black;
+    color: white;
+}
+
+
+
+
+
+
+
 .btn_login_logout{
     display: inline;
     float:right;
@@ -49,7 +89,8 @@ a:hover {
 }
 
 .contents{
-    padding-left: 10px;
+    /* padding-left: 10px; */
+    /* text-align: center */
 }
 
 /* selected link */

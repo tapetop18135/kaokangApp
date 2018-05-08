@@ -3,12 +3,21 @@ extends user_layout
 block contents 
 
     div
-        h1 HOME PAGE
-        ul(class="index")
-            li(class = "history") HISTORY
-            li(class = "create_food") CREATE FOOD MENU
-            -if(longinBool){
-                li(class = "add_edit_menu") ADD MENU / EDIT MENU
-                li(class = "add_edit_ingredient") ADD INGREDIENT / EDIT INGREDIENT
-            -}
-            li(class = "about") ABOUT US
+        div(class="conHomepage")
+            h1(class="hompage") HOME PAGE
+            //- ul(class="index")
+            //-     li(class = "history") HISTORY
+            //-     li(class = "create_food") CREATE FOOD MENU
+            //-     -if(longinBool){
+            //-         li(class = "add_edit_menu") ADD MENU / EDIT MENU
+            //-         li(class = "add_edit_ingredient") ADD INGREDIENT / EDIT INGREDIENT
+            //-     -}
+            //-     li(class = "about") ABOUT US
+            div(class="index")
+                div(class = "history") HISTORY
+                div(class = "create_food") CREATE FOOD MENU
+                -if(longinBool){
+                    div(class = "add_edit_menu") MANAGE MENU
+                    div(class = "add_edit_ingredient") MANAGE INGREDIENT 
+                -}
+                div(class = "about") ABOUT US
