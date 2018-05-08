@@ -23,7 +23,7 @@ router.get("/",function(req,res){
                 date_use.push(s+"-"+months[(date.getMonth())]+"-"+date.getFullYear());
             }
         }
-        res.render("./user/user_history.jade",{style: "history",js:"history",title : "HISTORY",
+        res.render("./user/user_history.jade",{username:req.session.user ,style: "history",js:"history",title : "HISTORY",
         data_history : results,date:date_use , longinBool :loginboolean});
     })
   

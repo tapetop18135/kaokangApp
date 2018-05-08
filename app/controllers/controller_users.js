@@ -26,7 +26,9 @@ router.post("/login",function(req,res){
                 res.redirect("/")
 
             }else{
+                console.log(results[0]["username"])
                 console.log(results[0]["email"]);
+                req.session.user = results[0]["username"]
                 req.session.email = results[0]["email"]
                 // console.log(req.session);
                 res.redirect("/")

@@ -12,7 +12,7 @@ router.get('/',function(req,res){
         loginboolean = true
     }
     db.showMenuAll(function(results){
-        res.render("./user/user_create_food_menu.jade",{style: "create_food_menu",js:"create_food_menu",title : "Create Food Menu",data:results , longinBool :loginboolean});
+        res.render("./user/user_create_food_menu.jade",{username:req.session.user ,style: "create_food_menu",js:"create_food_menu",title : "Create Food Menu",data:results , longinBool :loginboolean});
     })
 
 });

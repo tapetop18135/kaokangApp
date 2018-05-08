@@ -5,7 +5,7 @@ var db = require("../models/store_kaokang.js");
 router.get("/",function(req,res){
 
     db.showRaw_materialAll(function(results){
-        res.render("./user/add_edit_ingredient/user_add_edit_ingredient.jade",{longinBool :true , style: "add_edit_ingredient/add_edit_ingredient",js:"add_edit_ingredient/add_edit_ingredient",title : "ADD ingredient EDIT ingredient",data:results});
+        res.render("./user/add_edit_ingredient/user_add_edit_ingredient.jade",{username:req.session.user ,longinBool :true , style: "add_edit_ingredient/add_edit_ingredient",js:"add_edit_ingredient/add_edit_ingredient",title : "ADD ingredient EDIT ingredient",data:results});
     });
 })
 
@@ -33,7 +33,7 @@ router.post("/search",function(req,res){
 
 router.get("/add_a_ingredient",function(req,res){
 
-    res.render("./user/add_edit_ingredient/user_add_edit_a_ingredinet.jade",{longinBool :true ,style: "add_edit_ingredient/add_a_ingredient",js:"add_edit_ingredient/add_a_ingredient",title : "ADD a Ingredient",type_of_page:"add"});
+    res.render("./user/add_edit_ingredient/user_add_edit_a_ingredinet.jade",{username:req.session.user ,longinBool :true ,style: "add_edit_ingredient/add_a_ingredient",js:"add_edit_ingredient/add_a_ingredient",title : "ADD a Ingredient",type_of_page:"add"});
 
 })
 
@@ -52,7 +52,7 @@ router.get("/edit_a_ingredient/:ingredient",function(req,res){
             res.send(result[0])
         }else{
             console.log(result[0])
-            res.render("./user/add_edit_ingredient/user_add_edit_a_ingredinet.jade",{longinBool :true ,style: "add_edit_ingredient/edit_a_ingredient",js:"add_edit_ingredient/edit_a_ingredient",title : "Edit a Ingredient",type_of_page:"edit",data:result[0]}); 
+            res.render("./user/add_edit_ingredient/user_add_edit_a_ingredinet.jade",{username:req.session.user ,longinBool :true ,style: "add_edit_ingredient/edit_a_ingredient",js:"add_edit_ingredient/edit_a_ingredient",title : "Edit a Ingredient",type_of_page:"edit",data:result[0]}); 
         }
     })
     

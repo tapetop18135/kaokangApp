@@ -5,13 +5,13 @@ var db = require("../models/store_kaokang.js");
 router.get("/",function(req,res){
     
     db.showMenuAll(function(results){
-        res.render("./user/add_edit_menu/user_add_edit_menu.jade",{longinBool :true ,style: "add_edit_menu/add_edit_menu",js:"add_edit_menu/add_edit_menu",title : "ADD Menu EDIT Menu",data:results});
+        res.render("./user/add_edit_menu/user_add_edit_menu.jade",{username:req.session.user ,longinBool :true ,style: "add_edit_menu/add_edit_menu",js:"add_edit_menu/add_edit_menu",title : "ADD Menu EDIT Menu",data:results});
     })
 
 });
 
 router.get("/add_a_menu",function(req,res){
-    res.render("./user/add_edit_menu/user_add_edit_a_menu.jade",{longinBool :true ,style: "add_edit_menu/add_a_menu",js:"add_edit_menu/add_a_menu",title : "ADD a Menu",type_of_page:"add"});
+    res.render("./user/add_edit_menu/user_add_edit_a_menu.jade",{username:req.session.user ,longinBool :true ,style: "add_edit_menu/add_a_menu",js:"add_edit_menu/add_a_menu",title : "ADD a Menu",type_of_page:"add"});
 
 })
 
@@ -22,7 +22,7 @@ router.get("/edit_a_menu/:menu",function(req,res){
             res.send(result[0])
         }else{
             // console.log(result[0])
-            res.render("./user/add_edit_menu/user_add_edit_a_menu.jade",{longinBool :true ,style: "add_edit_menu/edit_a_menu",js:"add_edit_menu/edit_a_menu",title : "Edit a Menu",type_of_page:"edit",data:result[0]}); 
+            res.render("./user/add_edit_menu/user_add_edit_a_menu.jade",{username:req.session.user ,longinBool :true ,style: "add_edit_menu/edit_a_menu",js:"add_edit_menu/edit_a_menu",title : "Edit a Menu",type_of_page:"edit",data:result[0]}); 
         } 
     })
     
@@ -32,7 +32,7 @@ router.get("/add_a_menu/:name/:price",function(req,res){
     var name = req.params["name"]
     var price = req.params["price"]
     db.showRaw_materialAll(function(results){
-        res.render("./user/add_edit_menu/user_add_next_menu.jade",{longinBool :true ,style: "add_edit_menu/add_next_menu",js:"add_edit_menu/add_next_menu",title : "ADD a Menu Next",name:name,price:price,data:results})
+        res.render("./user/add_edit_menu/user_add_next_menu.jade",{username:req.session.user ,longinBool :true ,style: "add_edit_menu/add_next_menu",js:"add_edit_menu/add_next_menu",title : "ADD a Menu Next",name:name,price:price,data:results})
     })
 
 })

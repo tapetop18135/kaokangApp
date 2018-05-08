@@ -8,7 +8,7 @@ router.get('/',function(req,res){
     }else{
         loginboolean = true
     }
-    res.render("./user/user_index.jade",{style: "index",js:"index",title : "HOMEPAGE" , longinBool : loginboolean});
+    res.render("./user/user_index.jade",{username:req.session.user ,style: "index",js:"index",title : "HOMEPAGE" , longinBool : loginboolean});
 
 
 });

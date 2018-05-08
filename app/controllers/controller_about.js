@@ -8,7 +8,7 @@ router.get("/",function(req,res){
     }else{
         loginboolean = true
     }
-    res.render("./user/user_about.jade",{title:"About" , longinBool :loginboolean});  
+    res.render("./user/user_about.jade",{username:req.session.user ,title:"About" , longinBool :loginboolean});  
 })
 
 module.exports = router;
